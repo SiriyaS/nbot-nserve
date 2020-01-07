@@ -93,23 +93,25 @@ function handleMessageEvent(event) {
                         // console.log(JSON.parse(data).explanation);
                     });
 
+                    console.log(data)
+
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
 
-                console.log(data)
-                if(data === 'ping-pong'){
-                    var msg = {
-                    type: 'text',
-                    text: 'ping-pong'
-                    };
-                }
-                else{
-                    var msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
-                }
+                console.log(data) // WHY undefined !!!!!
+                // if(data === 'ping-pong'){
+                //     var msg = {
+                //     type: 'text',
+                //     text: 'ping-pong'
+                //     };
+                // }
+                // else{
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'cannot connect to server'
+                //     };
+                // }
 
             }
             else if(splited[1] === 'ออกไป'){
