@@ -97,6 +97,7 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
+                console.log(data)
                 if(data === 'ping-pong'){
                     var msg = {
                     type: 'text',
