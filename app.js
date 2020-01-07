@@ -51,15 +51,29 @@ function handleMessageEvent(event) {
     if(trimed === 'nbot'){
         var msg = {
             type: 'text',
-            text: 'Interact with nbot type "nbot hi" for adding event type "nbot event:<eventName>"'
+            text: 'Try type "nbot nserve" or "nbot hi"'
         }; 
     }
     else{
         var splited = trimed.split(" ");
         console.log(splited);
         if(splited[0] === 'nbot'){
-            
-            if(splited[1] === 'nserve'){
+
+            if(splited[1] === 'hi'){
+                var msg = {
+                    type: 'text',
+                    text: 'Hi !'
+                };
+            }
+            else if(splited[1] === ''){
+                if(splited[2] === 'hi'){
+                    var msg = {
+                        type: 'text',
+                        text: 'Hi !'
+                    };
+                }
+            }
+            else if(splited[1] === 'nserve'){
 
                 https.get('http:localhost:5000/ping', (resp) => {
 
@@ -85,14 +99,6 @@ function handleMessageEvent(event) {
                 //     text: 'Hi !'
                 // };
             }
-            // else if(splited[1] === ''){
-            //     if(splited[2] === 'hi'){
-            //         var msg = {
-            //             type: 'text',
-            //             text: 'Hi !'
-            //         };
-            //     }
-            // }
             else if(splited[1] === 'ออกไป'){
                 // console.log(event.source)
                 console.log(event.source.groupId)
@@ -109,7 +115,7 @@ function handleMessageEvent(event) {
             else{
                 var msg = {
                     type: 'text',
-                    text: 'Try type "nbot nserve"'
+                    text: 'Try type "nbot nserve" or "nbot hi"'
                 }; 
             }
         }
