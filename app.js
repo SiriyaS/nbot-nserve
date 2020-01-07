@@ -1,6 +1,6 @@
 // Channel access token
-const accessToken = "bT4pvobm8H5jOiV/Ahy4SU3h1oMSy6b+bNat3Xrsvplb1QDioJHXCiw9oztninnGe7h58GRf2lzPWAGFHMh4A7Rryf3lYt3eWtSsLIqpoEv+Znl7TlikfOwRKHq159UsQtp56bc15EGaQNDF0SJWgQdB04t89/1O/w1cDnyilFU="
-const secretToken =  "cd1d98e643ce2194b31acbfecb286213"
+const accessToken = "icZP1tn+eqmEidcLkTBDCfXs5OOrVagDXrat7DFXepTn4hUjgma6NuUlgzWO4ORa2gd+Vqf7DeZ11DuljJIgxxGQMr1XGbgVdki/dLDa8uSGvppEWPwmfuMktxeMBmeOwiJfSc2s00iK2WHbC61k0wdB04t89/1O/w1cDnyilFU="
+const secretToken =  "6b35c6553b33d9093fb89d77610613c6"
 
 
 // Import Library
