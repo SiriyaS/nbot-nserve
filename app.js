@@ -86,7 +86,7 @@ function handleMessageEvent(event) {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        console.log(data)
+                        // console.log(data)
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
                     });
@@ -95,18 +95,18 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                if(data === 'ping-pong'){
-                    var msg = {
-                        type: 'text',
-                        text: 'ping-pong'
-                    };
-                }
-                else{
-                    var msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
-                }
+                // if(data === 'ping-pong'){
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'ping-pong'
+                //     };
+                // }
+                // else{
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'cannot connect to server'
+                //     };
+                // }
                 
             }
             else if(splited[1] === 'ออกไป'){
