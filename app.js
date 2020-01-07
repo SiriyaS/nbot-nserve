@@ -48,8 +48,10 @@ function handleMessageEvent(event) {
     
     var trimed = eventText.trim();
 
+    var msg;
+
     if(trimed === 'nbot'){
-        var msg = {
+        msg = {
             type: 'text',
             text: 'Try type "nbot nserve" or "nbot hi"'
         }; 
@@ -60,22 +62,20 @@ function handleMessageEvent(event) {
         if(splited[0] === 'nbot'){
 
             if(splited[1] === 'hi'){
-                var msg = {
+                msg = {
                     type: 'text',
                     text: 'Hi !'
                 };
             }
             else if(splited[1] === ''){
                 if(splited[2] === 'hi'){
-                    var msg = {
+                    msg = {
                         type: 'text',
                         text: 'Hi !'
                     };
                 }
             }
             else if(splited[1] === 'nserve'){
-
-                var msg;
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
@@ -88,7 +88,6 @@ function handleMessageEvent(event) {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        console.log('1')
                         console.log(data)
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
@@ -105,27 +104,12 @@ function handleMessageEvent(event) {
                                 text: 'cannot connect to server'
                             };
                         }
+                        
                     });
-                    // console.log('2')
-                    // console.log(data)
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
-                // console.log('3')
-                // console.log(data) // WHY undefined !!!!!
-                // if(data === 'ping-pong'){
-                //     var msg = {
-                //     type: 'text',
-                //     text: 'ping-pong'
-                //     };
-                // }
-                // else{
-                //     var msg = {
-                //         type: 'text',
-                //         text: 'cannot connect to server'
-                //     };
-                // }
 
             }
             else if(splited[1] === 'ออกไป'){
@@ -142,7 +126,7 @@ function handleMessageEvent(event) {
                 });
             }
             else{
-                var msg = {
+                msg = {
                     type: 'text',
                     text: 'Try type "nbot nserve" or "nbot hi"'
                 }; 
