@@ -95,10 +95,19 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                // var msg = {
-                //     type: 'text',
-                //     text: 'Hi !'
-                // };
+                if(data === 'ping-pong'){
+                    var msg = {
+                        type: 'text',
+                        text: 'ping-pong'
+                    };
+                }
+                else{
+                    var msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
+                
             }
             else if(splited[1] === 'ออกไป'){
                 // console.log(event.source)
