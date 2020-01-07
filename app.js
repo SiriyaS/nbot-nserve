@@ -27,10 +27,10 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
-app.get('/ping', function (req,res){
-    console.log('ping-pong');
-    res.send('ping-pong');
-});
+// app.get('/ping', function (req,res){
+//     console.log('ping-pong');
+//     res.send('ping-pong');
+// });
 
 function handleEvent(event) {
 
@@ -81,7 +81,7 @@ function handleMessageEvent(event) {
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
-                    data = '';
+                    data = 'YO';
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
