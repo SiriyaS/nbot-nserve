@@ -77,9 +77,11 @@ function handleMessageEvent(event) {
             }
             else if(splited[1] === 'nserve'){
 
+                let data;
+
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
-                    let data = '';
+                    data = '';
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
@@ -91,25 +93,24 @@ function handleMessageEvent(event) {
                         console.log(data)
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
-
-                        if(data === 'ping-pong'){
-                            msg = {
-                            type: 'text',
-                            text: 'ping-pong'
-                            };
-                        }
-                        else{
-                            msg = {
-                                type: 'text',
-                                text: 'cannot connect to server'
-                            };
-                        }
-                        
                     });
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
+
+                if(data === 'ping-pong'){
+                    msg = {
+                    type: 'text',
+                    text: 'ping-pong'
+                    };
+                }
+                else{
+                    msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
 
             }
             else if(splited[1] === 'ออกไป'){
