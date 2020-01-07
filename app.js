@@ -88,17 +88,18 @@ function handleMessageEvent(event) {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
+                        console.log('1')
                         console.log(data)
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
                     });
-
+                    console.log('2')
                     console.log(data)
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
-
+                console.log('3')
                 console.log(data) // WHY undefined !!!!!
                 // if(data === 'ping-pong'){
                 //     var msg = {
