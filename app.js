@@ -75,7 +75,7 @@ function handleMessageEvent(event) {
             }
             else if(splited[1] === 'nserve'){
 
-                https.get('http:localhost:5000/ping', (resp) => {
+                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
                     let data = '';
 
