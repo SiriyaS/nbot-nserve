@@ -86,7 +86,7 @@ function handleMessageEvent(event) {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        // console.log(JSON.parse(data));
+                        console.log(JSON.parse(data));
                         console.log(JSON.parse(data).explanation);
                     });
 
