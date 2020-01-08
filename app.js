@@ -78,7 +78,6 @@ function handleMessageEvent(event) {
             else if(splited[1] === 'nserve'){
 
                 let data = '';
-                var msg;
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
@@ -90,18 +89,6 @@ function handleMessageEvent(event) {
                     resp.on('data', (chunk) => {
                         // console.log(chunk); // Hex
                         data += chunk;
-                        if(data === 'ping-pong'){
-                            msg = {
-                                type: 'text',
-                                text: 'ping-pong'
-                            };
-                        }
-                        else{
-                            msg = {
-                                type: 'text',
-                                text: 'cannot connect to server'
-                            };
-                        }
                     });
 
                     // The whole response has been received. Print out the result.
@@ -115,20 +102,20 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
                     
-                // console.log(`3 ${data}`) // print '' from line 80
+                console.log(`3 ${data}`) // print '' from line 80
 
-                // if(data === 'ping-pong'){
-                //     msg = {
-                //         type: 'text',
-                //         text: 'ping-pong'
-                //     };
-                // }
-                // else{
-                //     msg = {
-                //         type: 'text',
-                //         text: 'cannot connect to server'
-                //     };
-                // }
+                if(data === 'ping-pong'){
+                    var msg = {
+                        type: 'text',
+                        text: 'ping-pong'
+                    };
+                }
+                else{
+                    var msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
 
             }
             else if(splited[1] === 'ออกไป'){
