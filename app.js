@@ -83,7 +83,9 @@ function handleMessageEvent(event) {
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
-                    let data = '';
+                    // print 'ping-pong' from GET /ping
+                    
+                    data = '';
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
@@ -93,7 +95,7 @@ function handleMessageEvent(event) {
 
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        console.log(data)
+                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
                     });
@@ -102,7 +104,7 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                console.log(data) // WHY undefined !!!!
+                console.log(`3 ${data}`) // print 'ping-pong' from line 30
 
                 // if(data === 'ping-pong'){
                 //     msg = {
