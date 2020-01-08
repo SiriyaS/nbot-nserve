@@ -27,11 +27,11 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
-var data = "ping-pong";
+// var data = "ping-pong";
 
 app.get('/ping', function (req,res){
-    console.log(`1 ${data}`);
-    res.send(data);
+    console.log(`1 ping-pong`);
+    res.send('ping-pong');
 });
 
 function handleEvent(event) {
@@ -79,45 +79,68 @@ function handleMessageEvent(event) {
             }
             else if(splited[1] === 'nserve'){
 
-                let data = '';
+                async function getping(){
+                    var result = await gethttp();
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+                    console.log(`3 ${result}`) // print 'ping-pong' from line 30
 
-                    // print 'ping-pong' from GET /ping line 33
-                    
-                    // let data = '';
-
-                    // A chunk of data has been recieved.
-                    resp.on('data', (chunk) => {
-                        // console.log(chunk); // Hex
-                        data += chunk;
-                    });
-
-                    // The whole response has been received. Print out the result.
-                    resp.on('end', () => {
-                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                        // console.log(JSON.parse(data));
-                        // console.log(JSON.parse(data).explanation);
-                    });
-
-                }).on("error", (err) => {
-                    console.log("Error: " + err.message);
-                });
-
-                console.log(`3 ${data}`) // print 'ping-pong' from line 30
-
-                if(data === 'ping-pong'){
-                    msg = {
-                        type: 'text',
-                        text: 'ping-pong'
-                    };
+                    if(result === 'ping-pong'){
+                        msg = {
+                            type: 'text',
+                            text: 'ping-pong'
+                        };
+                    }
+                    else{
+                        msg = {
+                            type: 'text',
+                            text: 'cannot connect to server'
+                        };
+                    }
                 }
-                else{
-                    msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
+
+                function gethttp(){
+                    let data = '';
+                    https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+
+                        // print 'ping-pong' from GET /ping line 33
+                        
+                        // let data = '';
+
+                        // A chunk of data has been recieved.
+                        resp.on('data', (chunk) => {
+                            // console.log(chunk); // Hex
+                            data += chunk;
+                        });
+
+                        // The whole response has been received. Print out the result.
+                        resp.on('end', () => {
+                            console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                            // console.log(JSON.parse(data));
+                            // console.log(JSON.parse(data).explanation);
+                        });
+
+                    }).on("error", (err) => {
+                        console.log("Error: " + err.message);
+                    });
+                    return data;
                 }
+
+                getping();
+
+                // console.log(`3 ${data}`) // print 'ping-pong' from line 30
+
+                // if(data === 'ping-pong'){
+                //     msg = {
+                //         type: 'text',
+                //         text: 'ping-pong'
+                //     };
+                // }
+                // else{
+                //     msg = {
+                //         type: 'text',
+                //         text: 'cannot connect to server'
+                //     };
+                // }
 
             }
             else if(splited[1] === 'ออกไป'){
