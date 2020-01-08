@@ -27,9 +27,11 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
+var data = "ping-pong";
+
 app.get('/ping', function (req,res){
-    console.log('ping-pong');
-    res.send('ping-pong');
+    console.log(data);
+    res.send(data);
 });
 
 function handleEvent(event) {
@@ -85,22 +87,8 @@ function handleMessageEvent(event) {
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
-                        console.log(chunk);
+                        // console.log(chunk); // Hex
                         data += chunk;
-
-                        if(chunk === 'ping-pong'){
-                            msg = {
-                            type: 'text',
-                            text: 'ping-pong'
-                            };
-                        }
-                        else{
-                            msg = {
-                                type: 'text',
-                                text: 'cannot connect to server'
-                            };
-                        }
-
                     });
 
                     // The whole response has been received. Print out the result.
@@ -114,7 +102,7 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                // console.log(data) // WHY undefined !!!!
+                console.log(data) // WHY undefined !!!!
 
                 // if(data === 'ping-pong'){
                 //     msg = {
