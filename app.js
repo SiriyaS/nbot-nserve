@@ -30,7 +30,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 var data = "ping-pong";
 
 app.get('/ping', function (req,res){
-    console.log(data);
+    console.log(`1 ${data}`);
     res.send(data);
 });
 
@@ -79,13 +79,11 @@ function handleMessageEvent(event) {
             }
             else if(splited[1] === 'nserve'){
 
-                // let data;
-
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
                     // print 'ping-pong' from GET /ping
                     
-                    data = '';
+                    let data = '';
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
@@ -106,18 +104,18 @@ function handleMessageEvent(event) {
 
                 console.log(`3 ${data}`) // print 'ping-pong' from line 30
 
-                // if(data === 'ping-pong'){
-                //     msg = {
-                //     type: 'text',
-                //     text: 'ping-pong'
-                //     };
-                // }
-                // else{
-                //     msg = {
-                //         type: 'text',
-                //         text: 'cannot connect to server'
-                //     };
-                // }
+                if(data === 'ping-pong'){
+                    msg = {
+                        type: 'text',
+                        text: 'ping-pong'
+                    };
+                }
+                else{
+                    msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
 
             }
             else if(splited[1] === 'ออกไป'){
