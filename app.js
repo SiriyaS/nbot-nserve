@@ -50,10 +50,8 @@ function handleMessageEvent(event) {
     
     var trimed = eventText.trim();
 
-    var msg;
-
     if(trimed === 'nbot'){
-        msg = {
+        var msg = {
             type: 'text',
             text: 'Try type "nbot nserve" or "nbot hi"'
         }; 
@@ -64,14 +62,14 @@ function handleMessageEvent(event) {
         if(splited[0] === 'nbot'){
 
             if(splited[1] === 'hi'){
-                msg = {
+                var msg = {
                     type: 'text',
                     text: 'Hi !'
                 };
             }
             else if(splited[1] === ''){
                 if(splited[2] === 'hi'){
-                    msg = {
+                    var msg = {
                         type: 'text',
                         text: 'Hi !'
                     };
@@ -80,6 +78,7 @@ function handleMessageEvent(event) {
             else if(splited[1] === 'nserve'){
 
                 let data = '';
+                var msg;
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
@@ -98,13 +97,25 @@ function handleMessageEvent(event) {
                         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
                         // console.log(JSON.parse(data).explanation);
+                        if(data === 'ping-pong'){
+                            msg = {
+                                type: 'text',
+                                text: 'ping-pong'
+                            };
+                        }
+                        else{
+                            msg = {
+                                type: 'text',
+                                text: 'cannot connect to server'
+                            };
+                        }
                     });
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
                     
-                console.log(`3 ${data}`) // print 'ping-pong' from line 30
+                // console.log(`3 ${data}`) // print 'ping-pong' from line 30
 
                 // if(data === 'ping-pong'){
                 //     msg = {
@@ -134,7 +145,7 @@ function handleMessageEvent(event) {
                 });
             }
             else{
-                msg = {
+                var msg = {
                     type: 'text',
                     text: 'Try type "nbot nserve" or "nbot hi"'
                 }; 
