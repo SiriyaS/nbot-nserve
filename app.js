@@ -79,37 +79,43 @@ function handleMessageEvent(event) {
 
                 // let data = '';
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+                function getping(){
+                    https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
-                    // print 'ping-pong' from GET /ping line 33
-                    
-                    let data = '';
+                        // print 'ping-pong' from GET /ping line 33
+                        
+                        let data = '';
 
-                    // A chunk of data has been recieved.
-                    resp.on('data', (chunk) => {
-                        // console.log(chunk); // Hex 'ping-pong'
-                        data += chunk;
+                        // A chunk of data has been recieved.
+                        resp.on('data', (chunk) => {
+                            // console.log(chunk); // Hex 'ping-pong'
+                            data += chunk;
+                        });
+
+                        // The whole response has been received. Print out the result.
+                        resp.on('end', () => {
+                            console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                            // console.log(JSON.parse(data));
+                            if(data === 'ping-pong'){
+                                console.log('Yes');
+                            }
+                            else{
+                                console.log('No');
+                            }
+                            return data;
+                        });
+
+                    }).on("error", (err) => {
+                        console.log("Error: " + err.message);
                     });
+                    // return data;
+                }
 
-                    // The whole response has been received. Print out the result.
-                    resp.on('end', () => {
-                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                        // console.log(JSON.parse(data));
-                        if(data === 'ping-pong'){
-                            console.log('Yes');
-                        }
-                        else{
-                            console.log('No');
-                        }
-                    });
-
-                }).on("error", (err) => {
-                    console.log("Error: " + err.message);
-                });
+                var result = getping()
                     
-                console.log(`3 ${data}`) // print '' from line 80
+                console.log(`3 ${result}`) // print '' from line 80
 
-                if(data === 'ping-pong'){
+                if(result === 'ping-pong'){
                     var msg = {
                         type: 'text',
                         text: 'ping-pong'
