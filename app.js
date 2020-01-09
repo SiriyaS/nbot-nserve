@@ -77,13 +77,13 @@ function handleMessageEvent(event) {
             }
             else if(splited[1] === 'nserve'){
 
-                let data = '';
+                // let data = '';
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
                     // print 'ping-pong' from GET /ping line 33
                     
-                    // let data = '';
+                    let data = '';
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
@@ -96,12 +96,19 @@ function handleMessageEvent(event) {
                         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
                         if(data === 'ping-pong'){
-                            console.log('Yes');
+                            console.log('1 Yes');
                         }
                         else{
-                            console.log('No');
+                            console.log('1 No');
                         }
                     });
+
+                    if(data === 'ping-pong'){
+                        console.log('2 Yes');
+                    }
+                    else{
+                        console.log('2 No');
+                    }
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
