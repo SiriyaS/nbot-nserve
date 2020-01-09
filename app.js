@@ -103,13 +103,6 @@ function handleMessageEvent(event) {
                         }
                     });
 
-                    if(data === 'ping-pong'){
-                        console.log('2 Yes');
-                    }
-                    else{
-                        console.log('2 No');
-                    }
-
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
                 });
