@@ -87,7 +87,7 @@ function handleMessageEvent(event) {
 
                     // A chunk of data has been recieved.
                     resp.on('data', (chunk) => {
-                        // console.log(chunk); // Hex
+                        // console.log(chunk); // Hex 'ping-pong'
                         data += chunk;
                     });
 
@@ -96,10 +96,10 @@ function handleMessageEvent(event) {
                         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
                         if(data === 'ping-pong'){
-                            console.log('1 Yes');
+                            console.log('Yes');
                         }
                         else{
-                            console.log('1 No');
+                            console.log('No');
                         }
                     });
 
@@ -107,20 +107,20 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
                     
-                // console.log(`3 ${data}`) // print '' from line 80
-                
-                // if(data === 'ping-pong'){
-                //     var msg = {
-                //         type: 'text',
-                //         text: 'ping-pong'
-                //     };
-                // }
-                // else{
-                //     var msg = {
-                //         type: 'text',
-                //         text: 'cannot connect to server'
-                //     };
-                // }
+                console.log(`3 ${data}`) // print '' from line 80
+
+                if(data === 'ping-pong'){
+                    var msg = {
+                        type: 'text',
+                        text: 'ping-pong'
+                    };
+                }
+                else{
+                    var msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
 
             }
             else if(splited[1] === 'ออกไป'){
