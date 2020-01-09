@@ -79,7 +79,7 @@ function handleMessageEvent(event) {
 
                 // let data = '';
 
-                function getping(){
+                function gethttp(){
                     https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
                         // print 'ping-pong' from GET /ping line 33
@@ -111,22 +111,26 @@ function handleMessageEvent(event) {
                     // return data;
                 }
 
-                var result = getping()
-                    
-                console.log(`3 ${result}`) // print '' from line 80
+                async function getping(){
+                    var result = await gethttp()
+                        
+                    console.log(`3 ${result}`) // print '' from line 80
 
-                if(result === 'ping-pong'){
-                    var msg = {
-                        type: 'text',
-                        text: 'ping-pong'
-                    };
+                    if(result === 'ping-pong'){
+                        var msg = {
+                            type: 'text',
+                            text: 'ping-pong'
+                        };
+                    }
+                    else{
+                        var msg = {
+                            type: 'text',
+                            text: 'cannot connect to server'
+                        };
+                    }
+                    return msg;
                 }
-                else{
-                    var msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
-                }
+                var msg = getping();
 
             }
             else if(splited[1] === 'ออกไป'){
