@@ -95,7 +95,12 @@ function handleMessageEvent(event) {
                     resp.on('end', () => {
                         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
-                        // console.log(JSON.parse(data).explanation);
+                        if(data === 'ping-pong'){
+                            console.log('Yes');
+                        }
+                        else{
+                            console.log('No');
+                        }
                     });
 
                 }).on("error", (err) => {
@@ -104,18 +109,18 @@ function handleMessageEvent(event) {
                     
                 console.log(`3 ${data}`) // print '' from line 80
 
-                if(data === 'ping-pong'){
-                    var msg = {
-                        type: 'text',
-                        text: 'ping-pong'
-                    };
-                }
-                else{
-                    var msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
-                }
+                // if(data === 'ping-pong'){
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'ping-pong'
+                //     };
+                // }
+                // else{
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'cannot connect to server'
+                //     };
+                // }
 
             }
             else if(splited[1] === 'ออกไป'){
