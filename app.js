@@ -79,58 +79,48 @@ function handleMessageEvent(event) {
 
                 // let data = '';
 
-                function gethttp(){
-                    https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
-                        // print 'ping-pong' from GET /ping line 33
-                        
-                        let data = '';
+                    // print 'ping-pong' from GET /ping line 33
+                    
+                    let data = '';
 
-                        // A chunk of data has been recieved.
-                        resp.on('data', (chunk) => {
-                            // console.log(chunk); // Hex 'ping-pong'
-                            data += chunk;
-                        });
-
-                        // The whole response has been received. Print out the result.
-                        resp.on('end', () => {
-                            console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                            // console.log(JSON.parse(data));
-                            if(data === 'ping-pong'){
-                                console.log('Yes');
-                            }
-                            else{
-                                console.log('No');
-                            }
-                            return data;
-                        });
-
-                    }).on("error", (err) => {
-                        console.log("Error: " + err.message);
+                    // A chunk of data has been recieved.
+                    resp.on('data', (chunk) => {
+                        // console.log(chunk); // Hex 'ping-pong'
+                        data += chunk;
                     });
-                    // return data;
-                }
 
-                async function getping(){
-                    var result = await gethttp()
-                        
-                    console.log(`3 ${result}`) // print '' from line 80
+                    // The whole response has been received. Print out the result.
+                    resp.on('end', () => {
+                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                        // console.log(JSON.parse(data));
+                        if(data === 'ping-pong'){
+                            console.log('Yes');
+                        }
+                        else{
+                            console.log('No');
+                        }
+                    });
 
-                    if(result === 'ping-pong'){
-                        var msg = {
-                            type: 'text',
-                            text: 'ping-pong'
-                        };
-                    }
-                    else{
-                        var msg = {
-                            type: 'text',
-                            text: 'cannot connect to server'
-                        };
-                    }
-                    return msg;
+                }).on("error", (err) => {
+                    console.log("Error: " + err.message);
+                });
+
+                console.log(`3 ${data}`) // print '' from line 80
+
+                if(data === 'ping-pong'){
+                    var msg = {
+                        type: 'text',
+                        text: 'ping-pong'
+                    };
                 }
-                var msg = getping();
+                else{
+                    var msg = {
+                        type: 'text',
+                        text: 'cannot connect to server'
+                    };
+                }
 
             }
             else if(splited[1] === 'ออกไป'){
