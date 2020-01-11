@@ -79,7 +79,7 @@ function handleMessageEvent(event) {
 
                 // let data = '';
 
-                https.get('http:localhost:5000/ping', (resp) => {
+                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
                     // print 'ping-pong' from GET /ping line 33
                     
