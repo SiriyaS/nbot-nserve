@@ -91,10 +91,11 @@ function handleMessageEvent(event) {
                     console.log(`statusCode: ${res.statusCode}`)
                   
                     res.on('data', d => {
-                      process.stdout.write(d)
+                      var result = process.stdout.write(d)
+                      console.log(result)
                     })
                 })
-                console.log(req);
+                // console.log(req);
                 req.on('error', error => {
                     console.error(error)
                 })
