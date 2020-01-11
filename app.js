@@ -110,6 +110,7 @@ function handleMessageEvent(event) {
                                 text: 'cannot connect to server'
                             };
                         }
+                        console.log(msg);
                     });
 
                 }).on("error", (err) => {
