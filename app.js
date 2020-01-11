@@ -80,42 +80,63 @@ function handleMessageEvent(event) {
                 // let data = '';
                 var msg;
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+                const options = {
+                    hostname: 'https://nbot-nserve.herokuapp.com',
+                    // port: 443,
+                    path: '/ping',
+                    method: 'GET'
+                }
 
-                    // print 'ping-pong' from GET /ping line 33
+                const req = https.request(options, res => {
+                    console.log(`statusCode: ${res.statusCode}`)
+                  
+                    res.on('data', d => {
+                      process.stdout.write(d)
+                    })
+                })
+                console.log(req);
+                req.on('error', error => {
+                    console.error(error)
+                })
+                
+                req.end()
+
+                // https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+
+                //     // print 'ping-pong' from GET /ping line 33
                     
-                    let data = '';
+                //     let data = '';
 
-                    // A chunk of data has been recieved.
-                    resp.on('data', (chunk) => {
-                        // console.log(chunk); // Hex 'ping-pong'
-                        data += chunk;
-                    });
+                //     // A chunk of data has been recieved.
+                //     resp.on('data', (chunk) => {
+                //         // console.log(chunk); // Hex 'ping-pong'
+                //         data += chunk;
+                //     });
 
-                    // The whole response has been received. Print out the result.
-                    resp.on('end', () => {
-                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                        // console.log(JSON.parse(data));
-                        if(data === 'ping-pong'){
-                            console.log('Yes');
-                            msg = {
-                                type: 'text',
-                                text: 'ping-pong'
-                            };
-                        }
-                        else{
-                            console.log('No');
-                            msg = {
-                                type: 'text',
-                                text: 'cannot connect to server'
-                            };
-                        }
-                        console.log(msg);
-                    });
+                //     // The whole response has been received. Print out the result.
+                //     resp.on('end', () => {
+                //         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                //         // console.log(JSON.parse(data));
+                //         if(data === 'ping-pong'){
+                //             console.log('Yes');
+                //             msg = {
+                //                 type: 'text',
+                //                 text: 'ping-pong'
+                //             };
+                //         }
+                //         else{
+                //             console.log('No');
+                //             msg = {
+                //                 type: 'text',
+                //                 text: 'cannot connect to server'
+                //             };
+                //         }
+                //         console.log(msg);
+                //     });
 
-                }).on("error", (err) => {
-                    console.log("Error: " + err.message);
-                });
+                // }).on("error", (err) => {
+                //     console.log("Error: " + err.message);
+                // });
 
                 // console.log(`3 ${data}`) // NOT DEFINED     
 
