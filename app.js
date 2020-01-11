@@ -82,7 +82,7 @@ function handleMessageEvent(event) {
 
                 const options = {
                     hostname: 'https://nbot-nserve.herokuapp.com',
-                    // port: 443,
+                    port: 5000,
                     path: '/ping',
                     method: 'GET'
                 }
