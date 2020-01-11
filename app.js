@@ -80,64 +80,44 @@ function handleMessageEvent(event) {
                 // let data = '';
                 var msg;
 
-                // const options = {
-                //     hostname: 'https://nbot-nserve.herokuapp.com',
-                //     // port: 5000,
-                //     path: '/ping',
-                //     method: 'GET'
-                // }
+                https.get('https://nbot-nserve.herokuapp.com/ping', async (resp) => {
 
-                const req = https.get('https://nbot-nserve.herokuapp.com/ping', res => {
-                    console.log(`statusCode: ${res.statusCode}`)
-                  
-                    res.on('data', d => {
-                      var result = process.stdout.write(d)
-                      console.log(result)
-                    })
-                })
-                // console.log(req);
-                req.on('error', error => {
-                    console.error(error)
-                })
-                
-                req.end()
+                    console.log(`statusCode: ${resp.statusCode}`)
 
-                // https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
-
-                //     // print 'ping-pong' from GET /ping line 33
+                    // print 'ping-pong' from GET /ping line 33
                     
-                //     let data = '';
+                    let data = '';
 
-                //     // A chunk of data has been recieved.
-                //     resp.on('data', (chunk) => {
-                //         // console.log(chunk); // Hex 'ping-pong'
-                //         data += chunk;
-                //     });
+                    // A chunk of data has been recieved.
+                    await resp.on('data', (chunk) => {
+                        // console.log(chunk); // Hex 'ping-pong'
+                        data += chunk;
+                    });
 
-                //     // The whole response has been received. Print out the result.
-                //     resp.on('end', () => {
-                //         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                //         // console.log(JSON.parse(data));
-                //         if(data === 'ping-pong'){
-                //             console.log('Yes');
-                //             msg = {
-                //                 type: 'text',
-                //                 text: 'ping-pong'
-                //             };
-                //         }
-                //         else{
-                //             console.log('No');
-                //             msg = {
-                //                 type: 'text',
-                //                 text: 'cannot connect to server'
-                //             };
-                //         }
-                //         console.log(msg);
-                //     });
+                    // The whole response has been received. Print out the result.
+                    await resp.on('end', () => {
+                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                        // console.log(JSON.parse(data));
+                        if(data === 'ping-pong'){
+                            console.log('Yes');
+                            msg = {
+                                type: 'text',
+                                text: 'ping-pong'
+                            };
+                        }
+                        else{
+                            console.log('No');
+                            msg = {
+                                type: 'text',
+                                text: 'cannot connect to server'
+                            };
+                        }
+                        console.log(msg);
+                    });
 
-                // }).on("error", (err) => {
-                //     console.log("Error: " + err.message);
-                // });
+                }).on("error", (err) => {
+                    console.log("Error: " + err.message);
+                });
 
                 // console.log(`3 ${data}`) // NOT DEFINED     
 
