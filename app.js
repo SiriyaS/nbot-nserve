@@ -78,6 +78,7 @@ function handleMessageEvent(event) {
             else if(splited[1] === 'nserve'){
 
                 // let data = '';
+                var msg;
 
                 https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
 
@@ -97,9 +98,17 @@ function handleMessageEvent(event) {
                         // console.log(JSON.parse(data));
                         if(data === 'ping-pong'){
                             console.log('Yes');
+                            msg = {
+                                type: 'text',
+                                text: 'ping-pong'
+                            };
                         }
                         else{
                             console.log('No');
+                            msg = {
+                                type: 'text',
+                                text: 'cannot connect to server'
+                            };
                         }
                     });
 
@@ -107,20 +116,20 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                console.log(`3 ${data}`) // NOT DEFINED     
+                // console.log(`3 ${data}`) // NOT DEFINED     
 
-                if(data === 'ping-pong'){
-                    var msg = {
-                        type: 'text',
-                        text: 'ping-pong'
-                    };
-                }
-                else{
-                    var msg = {
-                        type: 'text',
-                        text: 'cannot connect to server'
-                    };
-                }
+                // if(data === 'ping-pong'){
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'ping-pong'
+                //     };
+                // }
+                // else{
+                //     var msg = {
+                //         type: 'text',
+                //         text: 'cannot connect to server'
+                //     };
+                // }
 
             }
             else if(splited[1] === 'ออกไป'){
