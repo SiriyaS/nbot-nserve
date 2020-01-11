@@ -80,14 +80,14 @@ function handleMessageEvent(event) {
                 // let data = '';
                 var msg;
 
-                const options = {
-                    hostname: 'https://nbot-nserve.herokuapp.com',
-                    port: 5000,
-                    path: '/ping',
-                    method: 'GET'
-                }
+                // const options = {
+                //     hostname: 'https://nbot-nserve.herokuapp.com',
+                //     // port: 5000,
+                //     path: '/ping',
+                //     method: 'GET'
+                // }
 
-                const req = https.request(options, res => {
+                const req = https.get('https://nbot-nserve.herokuapp.com/ping', res => {
                     console.log(`statusCode: ${res.statusCode}`)
                   
                     res.on('data', d => {
