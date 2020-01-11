@@ -79,7 +79,7 @@ function handleMessageEvent(event) {
 
                 // let data = '';
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', (resp) => {
+                https.get('http:localhost:5000/ping', (resp) => {
 
                     // print 'ping-pong' from GET /ping line 33
                     
@@ -107,7 +107,7 @@ function handleMessageEvent(event) {
                     console.log("Error: " + err.message);
                 });
 
-                console.log(`3 ${data}`) // print '' from line 80
+                console.log(`3 ${data}`) // NOT DEFINED     
 
                 if(data === 'ping-pong'){
                     var msg = {
