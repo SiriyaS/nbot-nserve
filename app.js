@@ -115,6 +115,7 @@ function handleMessageEvent(event) {
                             };
                         }
                         console.log(msg);
+                        return msg;
                     // });
 
                 }).on("error", (err) => {
