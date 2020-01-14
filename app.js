@@ -80,7 +80,7 @@ function handleMessageEvent(event) {
                 // let data = '';
                 var msg;
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', async (resp) => {
+                https.get('https://nbot-nserve.herokuapp.com/ping', function (resp){
 
                     console.log(`statusCode: ${resp.statusCode}`)
 
@@ -89,13 +89,13 @@ function handleMessageEvent(event) {
                     let data = '';
 
                     // A chunk of data has been recieved.
-                    await resp.on('data', (chunk) => {
+                    resp.on('data', (chunk) => {
                         // console.log(chunk); // Hex 'ping-pong'
                         data += chunk;
                     });
 
                     // The whole response has been received. Print out the result.
-                    await resp.on('end', () => {
+                    resp.on('end', () => {
                         console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                         // console.log(JSON.parse(data));
                         if(data === 'ping-pong'){
