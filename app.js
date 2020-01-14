@@ -80,40 +80,42 @@ function handleMessageEvent(event) {
                 // let data = '';
                 var msg;
 
-                https.get('https://nbot-nserve.herokuapp.com/ping', function (resp){
-
-                    console.log(`statusCode: ${resp.statusCode}`)
+                https.get('https://nbot-nserve.herokuapp.com/ping', async function (resp){
 
                     // print 'ping-pong' from GET /ping line 33
+
+                    console.log(`statusCode: ${resp.statusCode}`)
                     
                     let data = '';
 
                     // A chunk of data has been recieved.
-                    resp.on('data', (chunk) => {
+                    await resp.on('data', (chunk) => {
                         // console.log(chunk); // Hex 'ping-pong'
                         data += chunk;
                     });
 
+                    console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+
                     // The whole response has been received. Print out the result.
-                    resp.on('end', () => {
-                        console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
-                        // console.log(JSON.parse(data));
-                        if(data === 'ping-pong'){
-                            console.log('Yes');
-                            msg = {
-                                type: 'text',
-                                text: 'ping-pong'
-                            };
-                        }
-                        else{
-                            console.log('No');
-                            msg = {
-                                type: 'text',
-                                text: 'cannot connect to server'
-                            };
-                        }
-                        console.log(msg);
-                    });
+                    // resp.on('end', () => {
+                    //     console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
+                    //     // console.log(JSON.parse(data));
+                    //     if(data === 'ping-pong'){
+                    //         console.log('Yes');
+                    //         msg = {
+                    //             type: 'text',
+                    //             text: 'ping-pong'
+                    //         };
+                    //     }
+                    //     else{
+                    //         console.log('No');
+                    //         msg = {
+                    //             type: 'text',
+                    //             text: 'cannot connect to server'
+                    //         };
+                    //     }
+                    //     console.log(msg);
+                    // });
 
                 }).on("error", (err) => {
                     console.log("Error: " + err.message);
