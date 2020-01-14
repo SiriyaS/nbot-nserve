@@ -100,21 +100,21 @@ function handleMessageEvent(event) {
                     // resp.on('end', () => {
                     //     console.log(`2 ${data}`) // print 'ping-pong' from data+chunk
                     //     // console.log(JSON.parse(data));
-                    //     if(data === 'ping-pong'){
-                    //         console.log('Yes');
-                    //         msg = {
-                    //             type: 'text',
-                    //             text: 'ping-pong'
-                    //         };
-                    //     }
-                    //     else{
-                    //         console.log('No');
-                    //         msg = {
-                    //             type: 'text',
-                    //             text: 'cannot connect to server'
-                    //         };
-                    //     }
-                    //     console.log(msg);
+                        if(data === 'ping-pong'){
+                            console.log('Yes');
+                            msg = {
+                                type: 'text',
+                                text: 'ping-pong'
+                            };
+                        }
+                        else{
+                            console.log('No');
+                            msg = {
+                                type: 'text',
+                                text: 'cannot connect to server'
+                            };
+                        }
+                        console.log(msg);
                     // });
 
                 }).on("error", (err) => {
